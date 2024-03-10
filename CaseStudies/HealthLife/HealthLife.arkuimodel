@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arkUIModel:GUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arkUIModel="http://www.example.org/arkUIModel" description="HealthLife">
+  <stylelibray name="stylelibray">
+    <styleclass xsi:type="arkUIModel:TextStyle" width="${THOUSANDTH_1000}" name="titleTextStyle" fontColor="$r(`app.element.color.titleColor`)" fontSize="$r('app.float.default_16')" fontWeight="${FONT_WEIGHT_500}"/>
+    <styleclass xsi:type="arkUIModel:TextStyle" name="HealthTextStyle" fontColor="$r('app.color.titleColor')" fontSize="$r('app.float.default_16')" fontWeight="${FONT_WEIGHT_500}"/>
+    <styleclass xsi:type="arkUIModel:TextStyle" name="labelTextStyle" fontSize="$r('app.float.default_16')" fontWeight="${FONT_WEIGHT_500}"/>
+    <styleclass xsi:type="arkUIModel:TextStyle" width="'100%'" name="taskTextStyle" fontColor="$r('app.color.white')"/>
+    <styleclass xsi:type="arkUIModel:TextStyle" name="textStyle" fontColor="$r('app.color.white')"/>
+  </stylelibray>
+  <rootpage>
+    <page pageTitle="Index" uilogic="//@uilogic.1" uidesign="//@uidesign.1" subpages="//@rootpage/@page.1 //@rootpage/@page.2 //@rootpage/@page.3"/>
+    <page pageTitle="baseTab" uilogic="//@uilogic.2" uidesign="//@uidesign.2"/>
+    <page pageTitle="tabTitles" uilogic="//@uilogic.3" uidesign="//@uidesign.3"/>
+    <page pageTitle="Home" uilogic="//@uilogic.4" uidesign="//@uidesign.4" subpages="//@rootpage/@page.4 //@rootpage/@page.6 //@rootpage/@page.7"/>
+    <page pageTitle="WeekCalendar" uilogic="//@uilogic.5" uidesign="//@uidesign.5" subpages="//@rootpage/@page.5"/>
+    <page pageTitle="ArrowIcon" uilogic="//@uilogic.6" uidesign="//@uidesign.6"/>
+    <page pageTitle="TaskCard" uilogic="//@uilogic.7" uidesign="//@uidesign.7"/>
+    <page pageTitle="CustomDialogView" uilogic="//@uilogic.8" uidesign="//@uidesign.8" subpages="//@rootpage/@page.8"/>
+    <page pageTitle="CustomDialogExample" uilogic="//@uilogic.9" uidesign="//@uidesign.9" subpages="//@rootpage/@page.9 //@rootpage/@page.10"/>
+    <page pageTitle="TaskBaseInfo" uilogic="//@uilogic.10" uidesign="//@uidesign.10"/>
+    <page pageTitle="TaskClock" uilogic="//@uilogic.11" uidesign="//@uidesign.11"/>
+  </rootpage>
+  <animationlibray/>
+  <uilogic name="home">
+    <pageparameter name="message" pType="string" value="&quot;Hello,World!&quot;" state="">
+      <type type="string"/>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="Index">
+    <pageparameter name="index" pType="number" value="0">
+      <type type="number"/>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="baseTab">
+    <workflow flowName="changeTab">
+      <function functionType="Start" workflow="//@uilogic.2/@workflow.0" name="start">
+        <operation xsi:type="arkUIModel:StartOp"/>
+      </function>
+      <function functionType="End" workflow="//@uilogic.2/@workflow.0" name="end">
+        <operation xsi:type="arkUIModel:EndOp"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.2/@workflow.0" name="setValue0">
+        <operation xsi:type="arkUIModel:SetParameter" value="${targetIndex}" parm="${index}"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.2/@workflow.0" name="changeindex0">
+        <operation xsi:type="arkUIModel:ChangeIndex" tabsID="tabs" tabID="${targetIndex}"/>
+      </function>
+      <flowline source="//@uilogic.2/@workflow.0/@function.0" target="//@uilogic.2/@workflow.0/@function.2"/>
+      <flowline source="//@uilogic.2/@workflow.0/@function.2" target="//@uilogic.2/@workflow.0/@function.3"/>
+      <flowline source="//@uilogic.2/@workflow.0/@function.3" target="//@uilogic.2/@workflow.0/@function.1"/>
+    </workflow>
+    <pageparameter name="title" pType="string">
+      <type type="string"/>
+    </pageparameter>
+    <pageparameter name="selectedImg" pType="Resource">
+      <type xsi:type="arkUIModel:Entity" type="Resource"/>
+    </pageparameter>
+    <pageparameter name="normalImg" pType="Resource">
+      <type xsi:type="arkUIModel:Entity" type="Resource"/>
+    </pageparameter>
+    <pageparameter name="targetIndex" pType="number">
+      <type type="number"/>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="tabTitles">
+    <pageparameter name="title" pType="Resource" value="$r('app.string.menu_home')">
+      <type xsi:type="arkUIModel:Entity" type="Resource"/>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="Home">
+    <workflow flowName="getDateInfo">
+      <function functionType="Start" workflow="//@uilogic.4/@workflow.0" name="start">
+        <operation xsi:type="arkUIModel:StartOp"/>
+      </function>
+      <function functionType="End" workflow="//@uilogic.4/@workflow.0" name="end">
+        <operation xsi:type="arkUIModel:EndOp"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="getValue0">
+        <operation xsi:type="arkUIModel:GetParameter" parm="date" value="new Date()"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="getValue0">
+        <operation xsi:type="arkUIModel:GetParameter" parm="date3" value="new Date(${date}.getTime() - ${DAY_TIME})"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="getValue0">
+        <operation xsi:type="arkUIModel:GetParameter" parm="date2" value="new Date(${date3}.getTime() - ${DAY_TIME})"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="getValue0">
+        <operation xsi:type="arkUIModel:GetParameter" parm="date1" value="new Date(${date2}.getTime() - ${DAY_TIME})"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="getValue0">
+        <operation xsi:type="arkUIModel:GetParameter" parm="date4" value="new Date(${date}.getTime() + ${DAY_TIME})"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="getValue0">
+        <operation xsi:type="arkUIModel:GetParameter" parm="date5" value="new Date(${date4}.getTime() + ${DAY_TIME})"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="getValue0">
+        <operation xsi:type="arkUIModel:GetParameter" parm="date6" value="new Date(${date5}.getTime() + ${DAY_TIME})"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="setValue0">
+        <operation xsi:type="arkUIModel:SetParameter" value="${date}.getFullYear() + &quot;年&quot; + (${date}.getMonth() + 1) + &quot;月&quot; + (${date}.getDate()) + &quot;日星期&quot; + ${date}.getDay()" parm="${dateTitle}"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="setValue0">
+        <operation xsi:type="arkUIModel:SetParameter" value="[{date:${date1},targetTaskNum:7,finTaskNum:7},{date:${date2},targetTaskNum:7,finTaskNum:5},{date:${date3},targetTaskNum:7,finTaskNum:0},{date:${date},targetTaskNum:7,finTaskNum:7},{date:${date4},targetTaskNum:7,finTaskNum:0},{date:date5,targetTaskNum:7,finTaskNum:0},{date:date6,targetTaskNum:7,finTaskNum:0}]" parm="${weekDayList}"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.0" name="setValue0">
+        <operation xsi:type="arkUIModel:SetParameter" value="{date:${date},targetTaskNum:7,finTaskNum:5}" parm="${selectDay}"/>
+      </function>
+      <flowline source="//@uilogic.4/@workflow.0/@function.0" target="//@uilogic.4/@workflow.0/@function.2"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.2" target="//@uilogic.4/@workflow.0/@function.3"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.3" target="//@uilogic.4/@workflow.0/@function.4"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.4" target="//@uilogic.4/@workflow.0/@function.5"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.5" target="//@uilogic.4/@workflow.0/@function.6"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.6" target="//@uilogic.4/@workflow.0/@function.7"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.7" target="//@uilogic.4/@workflow.0/@function.8"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.8" target="//@uilogic.4/@workflow.0/@function.9"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.9" target="//@uilogic.4/@workflow.0/@function.10"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.10" target="//@uilogic.4/@workflow.0/@function.11"/>
+      <flowline source="//@uilogic.4/@workflow.0/@function.11" target="//@uilogic.4/@workflow.0/@function.1"/>
+    </workflow>
+    <workflow flowName="toTaskListPage">
+      <function functionType="Start" workflow="//@uilogic.4/@workflow.1" name="start">
+        <operation xsi:type="arkUIModel:StartOp"/>
+      </function>
+      <function functionType="End" workflow="//@uilogic.4/@workflow.1" name="end">
+        <operation xsi:type="arkUIModel:EndOp"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.4/@workflow.1" name="route0">
+        <operation xsi:type="arkUIModel:RouteSkip" type="push" page="TaskListPage"/>
+      </function>
+      <flowline source="//@uilogic.4/@workflow.1/@function.0" target="//@uilogic.4/@workflow.1/@function.2"/>
+      <flowline source="//@uilogic.4/@workflow.1/@function.2" target="//@uilogic.4/@workflow.1/@function.1"/>
+    </workflow>
+    <pageparameter name="selectDay" pType="DayInfo" value="new DayInfo(new Date(), 8, 6)">
+      <type xsi:type="arkUIModel:Entity" type="DayInfo">
+        <attributes name="date">
+          <type type="Date"/>
+        </attributes>
+        <attributes name="targetTaskNum">
+          <type type="number"/>
+        </attributes>
+        <attributes name="finTaskNum">
+          <type type="number"/>
+        </attributes>
+      </type>
+    </pageparameter>
+    <pageparameter name="dateTitle" pType="string" value="'2023年04月21日星期五'" state="">
+      <type type="string"/>
+    </pageparameter>
+    <pageparameter name="weekDayList" pType="array" value="[]">
+      <type xsi:type="arkUIModel:Array" type="array">
+        <atype type="DayInfo"/>
+      </type>
+    </pageparameter>
+    <pageparameter name="DayTaskList" pType="array" value="[{id:1,date:this.dateTitle,taskID:1,taskName:'早起',targetValue:'08: 00',isAlarm:true,startTime:'08: 00',endTime:'00: 00',frequency:'1, 2, 3, 4, 5, 6, 7',isDone:false,finValue:'',isOpen:true,unit:'',taskImage:$r('app.media.morning'),taskText:$r('app.string.task_morning'),dialogImage:$r('app.media.getUpEarly')},{id:2,date:this.dateTitle,taskID:2,taskName:'喝水',targetValue:'0.25',isAlarm:true,startTime:'08: 00',endTime:'00: 00',frequency:'1, 2, 3, 4, 5, 6, 7',isDone:false,finValue:'',isOpen:true,unit:'L',taskImage:$r('app.media.water'),taskText:$r('app.string.task_water'),dialogImage:$r('app.media.getdrink')},{id:3,date:this.dateTitle,taskID:3,taskName:'吃苹果',targetValue:'1',isAlarm:true,startTime:'08: 00',endTime:'00: 00',frequency:'1, 2, 3, 4, 5, 6, 7',isDone:false,finValue:'',isOpen:true,unit:'个',taskImage:$r('app.media.apple'),taskText:$r('app.string.task_apple'),dialogImage:$r('app.media.eatApples')},{id:4,date:this.dateTitle,taskID:4,taskName:'每日微笑',targetValue:'1',isAlarm:true,startTime:'08: 00',endTime:'00: 00',frequency:'1, 2, 3, 4, 5, 6, 7',isDone:false,finValue:'',isOpen:true,unit:'次',taskImage:$r('app.media.smile'),taskText:$r('app.string.task_smile'),dialogImage:$r('app.media.dailySmile')},{id:5,date:this.dateTitle,taskID:5,taskName:'每日刷牙',targetValue:'1',isAlarm:true,startTime:'08: 00',endTime:'00: 00',frequency:'1, 2, 3, 4, 5, 6, 7',isDone:false,finValue:'',isOpen:true,unit:'次',taskImage:$r('app.media.brush'),taskText:$r('app.string.task_brush'),dialogImage:$r('app.media.brushTeeth')},{id:6,date:this.dateTitle,taskID:6,taskName:'早睡',targetValue:'20: 00',isAlarm:true,startTime:'08: 00',endTime:'00: 00',frequency:'1, 2, 3, 4, 5, 6, 7',isDone:false,finValue:'',isOpen:true,unit:'',taskImage:$r('app.media.night'),taskText:$r('app.string.task_night'),dialogImage:$r('app.media.sleepEarly')}]">
+      <type xsi:type="arkUIModel:Array" type="array">
+        <atype type="TaskInfo"/>
+      </type>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="WeekCalendar">
+    <pageparameter name="dateTitle" pType="string">
+      <type type="string"/>
+    </pageparameter>
+    <pageparameter name="weekDayList" pType="array">
+      <type xsi:type="arkUIModel:Array" type="array">
+        <atype type="DayInfo"/>
+      </type>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="ArrowIcon">
+    <pageparameter name="isRight" pType="boolean" value="false">
+      <type type="boolean"/>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="TaskCard">
+    <workflow flowName="editTask">
+      <function functionType="Start" workflow="//@uilogic.7/@workflow.0" name="start">
+        <operation xsi:type="arkUIModel:StartOp"/>
+      </function>
+      <function functionType="End" workflow="//@uilogic.7/@workflow.0" name="end">
+        <operation xsi:type="arkUIModel:EndOp"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.7/@workflow.0" name="getValue0">
+        <operation xsi:type="arkUIModel:GetParameter" name="TaskInfo" parm="editTask" value="${taskInfo}"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.7/@workflow.0" name="route0">
+        <operation xsi:type="arkUIModel:RouteSkip" type="push" page="TaskEditPage">
+          <contains name="params" pType="string" value="JSON.stringify(${editTask})">
+            <type type="string"/>
+          </contains>
+        </operation>
+      </function>
+      <flowline source="//@uilogic.7/@workflow.0/@function.0" target="//@uilogic.7/@workflow.0/@function.2"/>
+      <flowline source="//@uilogic.7/@workflow.0/@function.2" target="//@uilogic.7/@workflow.0/@function.3"/>
+      <flowline source="//@uilogic.7/@workflow.0/@function.3" target="//@uilogic.7/@workflow.0/@function.1"/>
+    </workflow>
+    <pageparameter name="taskInfo" pType="TaskInfo" value="undefined">
+      <type xsi:type="arkUIModel:Entity" type="TaskInfo">
+        <attributes name="id">
+          <type type="number"/>
+        </attributes>
+        <attributes name="date">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskID">
+          <type type="number"/>
+        </attributes>
+        <attributes name="taskName">
+          <type type="string"/>
+        </attributes>
+        <attributes name="targetValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isAlarm">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="startTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="endTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="frequency">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isDone">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="finValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isOpen">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="unit">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskImage">
+          <type type="Resource"/>
+        </attributes>
+        <attributes name="taskText">
+          <type type="Resource"/>
+        </attributes>
+      </type>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="CustomDialogView">
+    <workflow flowName="showTaskDialog">
+      <function functionType="Start" workflow="//@uilogic.8/@workflow.0" name="start">
+        <operation xsi:type="arkUIModel:StartOp"/>
+      </function>
+      <function functionType="End" workflow="//@uilogic.8/@workflow.0" name="end">
+        <operation xsi:type="arkUIModel:EndOp"/>
+      </function>
+      <function functionType="Case" workflow="//@uilogic.8/@workflow.0" name="case0">
+        <operation xsi:type="arkUIModel:CaseOp">
+          <expression name="exp" expressText="${DayTaskList}.length > 0"/>
+        </operation>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.8/@workflow.0" name="setValue0">
+        <operation xsi:type="arkUIModel:SetParameter" value="${DayTaskList}[0]" parm="${taskInfo}"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.8/@workflow.0" name="opendialog0">
+        <operation xsi:type="arkUIModel:OpenDialog" assignDialog="taskDialog"/>
+      </function>
+      <flowline source="//@uilogic.8/@workflow.0/@function.0" target="//@uilogic.8/@workflow.0/@function.2"/>
+      <flowline source="//@uilogic.8/@workflow.0/@function.2" target="//@uilogic.8/@workflow.0/@function.3" type="condition" value="exp"/>
+      <flowline source="//@uilogic.8/@workflow.0/@function.3" target="//@uilogic.8/@workflow.0/@function.4"/>
+      <flowline source="//@uilogic.8/@workflow.0/@function.4" target="//@uilogic.8/@workflow.0/@function.1"/>
+    </workflow>
+    <pageparameter name="DayTaskList" pType="array">
+      <type xsi:type="arkUIModel:Array" type="array">
+        <atype type="TaskInfo"/>
+      </type>
+    </pageparameter>
+    <pageparameter name="taskInfo" pType="TaskInfo" value="${DayTaskList}[0]">
+      <type xsi:type="arkUIModel:Entity" type="TaskInfo">
+        <attributes name="id">
+          <type type="number"/>
+        </attributes>
+        <attributes name="date">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskID">
+          <type type="number"/>
+        </attributes>
+        <attributes name="taskName">
+          <type type="string"/>
+        </attributes>
+        <attributes name="targetValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isAlarm">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="startTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="endTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="frequency">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isDone">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="finValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isOpen">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="unit">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskImage">
+          <type type="Resource"/>
+        </attributes>
+        <attributes name="taskText">
+          <type type="Resource"/>
+        </attributes>
+        <attributes name="dialogImage">
+          <type type="Resource"/>
+        </attributes>
+      </type>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="CustomDialogExample">
+    <pageparameter name="taskInfo" pType="TaskInfo">
+      <type xsi:type="arkUIModel:Entity" type="TaskInfo">
+        <attributes name="id">
+          <type type="number"/>
+        </attributes>
+        <attributes name="date">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskID">
+          <type type="number"/>
+        </attributes>
+        <attributes name="taskName">
+          <type type="string"/>
+        </attributes>
+        <attributes name="targetValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isAlarm">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="startTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="endTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="frequency">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isDone">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="finValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isOpen">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="unit">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskImage">
+          <type type="Resource"/>
+        </attributes>
+        <attributes name="taskText">
+          <type type="Resource"/>
+        </attributes>
+      </type>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="TaskBaseInfo">
+    <pageparameter name="taskName" pType="string">
+      <type type="string"/>
+    </pageparameter>
+    <pageparameter name="dialogImage" pType="Resource">
+      <type xsi:type="arkUIModel:Entity" type="Resource"/>
+    </pageparameter>
+  </uilogic>
+  <uilogic name="TaskClock">
+    <workflow flowName="clickButton">
+      <function functionType="Start" workflow="//@uilogic.11/@workflow.0" name="start">
+        <operation xsi:type="arkUIModel:StartOp"/>
+      </function>
+      <function functionType="End" workflow="//@uilogic.11/@workflow.0" name="end">
+        <operation xsi:type="arkUIModel:EndOp"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.11/@workflow.0" name="closedialog0">
+        <operation xsi:type="arkUIModel:CloseDialog" assignDialog="self"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.11/@workflow.0" name="setValue0">
+        <operation xsi:type="arkUIModel:SetParameter" value="true" parm="${taskInfo}.isDone"/>
+      </function>
+      <flowline source="//@uilogic.11/@workflow.0/@function.0" target="//@uilogic.11/@workflow.0/@function.2"/>
+      <flowline source="//@uilogic.11/@workflow.0/@function.2" target="//@uilogic.11/@workflow.0/@function.3"/>
+      <flowline source="//@uilogic.11/@workflow.0/@function.3" target="//@uilogic.11/@workflow.0/@function.1"/>
+    </workflow>
+    <workflow flowName="clickText">
+      <function functionType="Start" workflow="//@uilogic.11/@workflow.1" name="start">
+        <operation xsi:type="arkUIModel:StartOp"/>
+      </function>
+      <function functionType="End" workflow="//@uilogic.11/@workflow.1" name="end">
+        <operation xsi:type="arkUIModel:EndOp"/>
+      </function>
+      <function functionType="UIOperation" workflow="//@uilogic.11/@workflow.1" name="closedialog0">
+        <operation xsi:type="arkUIModel:CloseDialog" assignDialog="self"/>
+      </function>
+      <flowline source="//@uilogic.11/@workflow.1/@function.0" target="//@uilogic.11/@workflow.1/@function.2"/>
+      <flowline source="//@uilogic.11/@workflow.1/@function.2" target="//@uilogic.11/@workflow.1/@function.1"/>
+    </workflow>
+    <pageparameter name="showButton" pType="boolean" value="true">
+      <type type="boolean"/>
+    </pageparameter>
+    <pageparameter name="taskInfo" pType="TaskInfo">
+      <type xsi:type="arkUIModel:Entity" type="TaskInfo">
+        <attributes name="id">
+          <type type="number"/>
+        </attributes>
+        <attributes name="date">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskID">
+          <type type="number"/>
+        </attributes>
+        <attributes name="taskName">
+          <type type="string"/>
+        </attributes>
+        <attributes name="targetValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isAlarm">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="startTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="endTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="frequency">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isDone">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="finValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isOpen">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="unit">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskImage">
+          <type type="Resource"/>
+        </attributes>
+        <attributes name="taskText">
+          <type type="Resource"/>
+        </attributes>
+        <attributes name="dialogImage">
+          <type type="Resource"/>
+        </attributes>
+      </type>
+    </pageparameter>
+    <pageparameter name="selfController" pType="CustomDialogController">
+      <type xsi:type="arkUIModel:Entity" type="CustomDialogController"/>
+    </pageparameter>
+  </uilogic>
+  <uidesign name="home">
+    <pageview title="home">
+      <widgets xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.0/@pageview" space="20" alignItems="Center" justifyContent="Center">
+        <widget xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.0/@pageview" justifyContent="Center" alignItems="Center" space="5">
+          <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.0/@pageview" content="${message}">
+            <textevent/>
+            <textstyle fontSize="50" fontWeight="Bold"/>
+          </widget>
+          <columnevent/>
+          <columnstyle width="100%"/>
+        </widget>
+        <rowevent/>
+        <rowstyle height="100%"/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="Index">
+    <pageview title="Index">
+      <widgets xsi:type="arkUIModel:TabsContainer" id="tabs" widgetType="Container" root="//@uidesign.1/@pageview" barPosition="End" index="0">
+        <widget xsi:type="arkUIModel:TabContent" id="tabcontent" widgetType="Container" root="//@uidesign.1/@pageview">
+          <widget xsi:type="arkUIModel:TabItem" id="tabBar" widgetType="Container" root="//@uidesign.1/@pageview">
+            <pagerefrence name="baseTab">
+              <parameter name="title" value="${HOME_TITLE}"/>
+              <parameter name="targetIndex" value="${HOME_TAB_INDEX}"/>
+              <parameter name="selectedImg" value="$r('app.media.home_sel')"/>
+              <parameter name="normalImg" value="$r('app.media.home_normal')"/>
+              <pageevent/>
+            </pagerefrence>
+          </widget>
+          <widget xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.1/@pageview" justifyContent="Center" alignItems="Center" space="5">
+            <pagerefrence name="tabTitles">
+              <parameter name="title" value="$r('app.string.menu_home')"/>
+              <pageevent/>
+            </pagerefrence>
+            <pagerefrence name="Home">
+              <pageevent/>
+            </pagerefrence>
+            <columnevent/>
+            <columnstyle/>
+          </widget>
+          <tabcontentstyle paddingleft="$r('app.float.mainPage_padding')" backgroundColor="$r('app.color.mainPage_backgroundColor')" paddingright="$r('app.float.mainPage_padding')"/>
+        </widget>
+        <tabsevent/>
+        <tabsstyle width="${FULL_PARENT}" backgroundColor="White" barHeight="$r('app.float.mainPage_barHeight')"/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="baseTab">
+    <pageview title="baseTab">
+      <widgets xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.2/@pageview" justifyContent="Center" alignItems="Center" space="5">
+        <widget xsi:type="arkUIModel:ImageWidget" id="图片" widgetType="Widget" root="//@uidesign.2/@pageview" src="${index} === ${targetIndex} ? ${selectedImg} : ${normalImg}">
+          <imageevent/>
+          <imagestyle width="$r('app.float.mainPage_baseTab_size')" height="$r('app.float.mainPage_baseTab_size')"/>
+        </widget>
+        <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.2/@pageview" content="${title}">
+          <textevent/>
+          <textstyle margintop="$r('app.float.mainPage_baseTab_top')" fontColor="${index} === ${targetIndex} ? $r('app.color.mainPage_selected') : $r('app.color.mainPage_normal')" fontSize="$r('app.float.main_tab_fontSize')"/>
+        </widget>
+        <columnevent onClick="changeTab"/>
+        <columnstyle width="${FULL_PARENT}" height="$r('app.float.mainPage_barHeight')" margintop="$r('app.float.mainPage_baseTab_margin')"/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="tabTitles">
+    <pageview title="tabTitles">
+      <widgets xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.3/@pageview" content="${title}">
+        <textevent/>
+        <textstyle marginleft="$r('app.float.mainPage_tabTitles_margin')" marginright="$r('app.float.mainPage_tabTitles_margin')" margintop="$r('app.float.mainPage_tabTitles_margin')" marginbottom="$r('app.float.mainPage_tabTitles_margin')" fontSize="$r('app.float.page_title_text_size')" fontWeight="Medium"/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="Home">
+    <pageview title="Home">
+      <widgets xsi:type="arkUIModel:StackContainer" id="堆容器" widgetType="Container" root="//@uidesign.4/@pageview">
+        <widget xsi:type="arkUIModel:ScrollContainer" id="滚动窗" widgetType="Container" root="//@uidesign.4/@pageview">
+          <widget xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.4/@pageview" justifyContent="Center" alignItems="Center" space="5">
+            <widget xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.4/@pageview" justifyContent="End" alignItems="Center" space="5">
+              <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.4/@pageview" content="$r('app.string.target_progress')">
+                <textevent/>
+                <textstyle paddingleft="$r('app.float.default_24')" assign="titleTextStyle"/>
+              </widget>
+              <widget xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.4/@pageview" space="20" alignItems="Center" justifyContent="Center">
+                <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.4/@pageview" content="${selectDay}.finTaskNum + '/' + ${selectDay}.targetTaskNum">
+                  <textevent/>
+                  <textstyle fontSize="$r('app.float.default_72')" fontWeight="${FONT_WEIGHT_700}"/>
+                </widget>
+                <rowevent/>
+                <rowstyle width="${THOUSANDTH_1000}" paddingleft="$r('app.float.default_24')"/>
+              </widget>
+              <pagerefrence name="WeekCalendar">
+                <parameter name="dateTitle" value="${dateTitle}" assign="dateTitle"/>
+                <parameter name="weekDayList" value="${weekDayList}"/>
+                <pageevent/>
+              </pagerefrence>
+              <columnevent/>
+              <columnstyle height="${THOUSANDTH_500}" backgroundImage="$r('app.media.home_bg')" backgroundImageSize="{ width: ${THOUSANDTH_1000}, height: ${THOUSANDTH_900} }"/>
+            </widget>
+            <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.4/@pageview" content="$r('app.string.task_list')">
+              <textevent/>
+              <textstyle assign="titleTextStyle"/>
+            </widget>
+            <widget xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.4/@pageview" justifyContent="Center" alignItems="Center" space="${DEFAULT_8}">
+              <widget xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.4/@pageview" space="20" alignItems="Center" justifyContent="Center">
+                <pagerefrence name="TaskCard">
+                  <parameter name="taskInfo" value="${item}"/>
+                  <pageevent/>
+                </pagerefrence>
+                <foreach item="item" array="DayTaskList" arrayType="TaskInfo"/>
+                <rowevent/>
+                <rowstyle height="$r('app.float.default_64')" marginbottom="${DEFAULT_12}"/>
+              </widget>
+              <columnevent/>
+              <columnstyle width="${THOUSANDTH_1000}" paddingleft="${THOUSANDTH_33}" paddingright="${THOUSANDTH_33}" paddingtop="${THOUSANDTH_15}"/>
+            </widget>
+            <columnevent/>
+            <columnstyle/>
+          </widget>
+          <scrollevent/>
+          <scrollstyle width="${THOUSANDTH_1000}" height="${THOUSANDTH_1000}" align="TopStart" scrollBar="Off"/>
+        </widget>
+        <widget xsi:type="arkUIModel:ButtonWidget" id="按钮" widgetType="Widget" root="//@uidesign.4/@pageview" label="'+'" stateEffect="false" type="Circle">
+          <buttonevent onClick="toTaskListPage"/>
+          <buttonstyle width="$r('app.float.default_48')" height="$r('app.float.default_48')" position="{ x: ${THOUSANDTH_830}, y: ${THOUSANDTH_880} }" zIndex="${HOME_BTN_Z}"/>
+        </widget>
+        <pagerefrence name="CustomDialogView">
+          <parameter name="DayTaskList" value="${DayTaskList}"/>
+          <pageevent/>
+        </pagerefrence>
+        <stackevent/>
+        <stackstyle width="${THOUSANDTH_1000}" height="${THOUSANDTH_1000}" backgroundColor="$r('app.color.primaryBgColor')"/>
+      </widgets>
+      <pageevent aboutToAppear="getDateInfo"/>
+    </pageview>
+  </uidesign>
+  <uidesign name="WeekCalendar">
+    <pageview title="WeekCalendar">
+      <widgets xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.5/@pageview" space="20" alignItems="Center" justifyContent="Center">
+        <widget xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.5/@pageview" justifyContent="Center" alignItems="Center" space="5">
+          <widget xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.5/@pageview" space="20" alignItems="Center" justifyContent="Center">
+            <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.5/@pageview" content="${dateTitle} as string">
+              <textevent/>
+              <textstyle marginleft="$r('app.float.default_12')" marginright="$r('app.float.default_12')" margintop="$r('app.float.default_12')" marginbottom="$r('app.float.default_12')" fontSize="$r('app.float.default_14')"/>
+            </widget>
+            <pagerefrence name="ArrowIcon">
+              <parameter name="isRight" value="false"/>
+              <pageevent/>
+            </pagerefrence>
+            <pagerefrence name="ArrowIcon">
+              <parameter name="isRight" value="true"/>
+              <pageevent/>
+            </pagerefrence>
+            <rowevent/>
+            <rowstyle/>
+          </widget>
+          <widget xsi:type="arkUIModel:ScrollContainer" id="滚动窗" widgetType="Container" root="//@uidesign.5/@pageview">
+            <widget xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.5/@pageview" space="20" alignItems="Center" justifyContent="Center">
+              <widget xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.5/@pageview" justifyContent="SpaceBetween" alignItems="Center" space="5">
+                <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.5/@pageview" content="${item}.date.getDay().toString()">
+                  <textevent/>
+                  <textstyle fontColor="(${item}.date.getDate() === new Date().getDate()) ? $r('app.color.blueColor') : $r('app.color.titleColor')" fontSize="$r('app.float.default_12')" fontWeight="${FONT_WEIGHT_500}"/>
+                </widget>
+                <widget xsi:type="arkUIModel:DividerWidget" id="divider" widgetType="Widget" root="//@uidesign.5/@pageview">
+                  <dividerstyle width="$r('app.float.default_12')" margintop="${DEFAULT_2}" marginbottom="$r('app.float.default_4')" color="(${item}.date.getDate() === new Date().getDate()) ? $r('app.color.blueColor') : $r('app.color.white')"/>
+                </widget>
+                <widget xsi:type="arkUIModel:ImageWidget" id="图片" widgetType="Widget" root="//@uidesign.5/@pageview" src="$r('app.media.undone')">
+                  <imageevent/>
+                  <imagestyle height="$r('app.float.default_28')" margintop="${THOUSANDTH_80}" objectFit="Contain"/>
+                </widget>
+                <foreach item="item" array="weekDayList" arrayType="DayInfo"/>
+                <columnevent/>
+                <columnstyle width="100 / ${WEEK_DAY_NUM}"/>
+              </widget>
+              <rowevent/>
+              <rowstyle/>
+            </widget>
+            <scrollevent/>
+            <scrollstyle width="${THOUSANDTH_1000}" scrollable="Horizontal" scrollBar="Off"/>
+          </widget>
+          <columnevent/>
+          <columnstyle width="${THOUSANDTH_1000}" height="${THOUSANDTH_1000}" backgroundColor="$r('app.color.white')" paddingtop="${THOUSANDTH_50}" paddingbottom="${THOUSANDTH_120}" borderRadius="$r('app.float.default_24')"/>
+        </widget>
+        <rowevent/>
+        <rowstyle width="${THOUSANDTH_1000}" height="${THOUSANDTH_420}" paddingleft="${THOUSANDTH_33}" paddingright="${THOUSANDTH_33}" paddingtop="${THOUSANDTH_33}" paddingbottom="${THOUSANDTH_33}"/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="ArrowIcon">
+    <pageview title="ArrowIcon">
+      <widgets xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.6/@pageview" space="20" alignItems="Center" justifyContent="Center">
+        <widget xsi:type="arkUIModel:ImageWidget" id="图片" widgetType="Widget" root="//@uidesign.6/@pageview" src="$r('app.media.right_grey')">
+          <imageevent/>
+          <imagestyle width="$r('app.float.default_6')" height="$r('app.float.default_12')"/>
+        </widget>
+        <rowevent/>
+        <rowstyle width="$r('app.float.default_20')" height="$r('app.float.default_20')" rotate="{ z: 1, angle: ${isRight} ? 0 : ${DEFAULT_180} }"/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="TaskCard">
+    <pageview title="TaskCard">
+      <widgets xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.7/@pageview" space="${DEFAULT_6}" alignItems="Center" justifyContent="SpaceBetween">
+        <widget xsi:type="arkUIModel:ImageWidget" id="图片" widgetType="Widget" root="//@uidesign.7/@pageview" src="${taskInfo}.taskImage">
+          <imageevent/>
+          <imagestyle width="$r('app.float.default_36')" height="$r('app.float.default_36')" objectFit="Contain"/>
+        </widget>
+        <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.7/@pageview" content="${taskInfo}.taskText">
+          <textevent/>
+          <textstyle assign="HealthTextStyle"/>
+        </widget>
+        <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.7/@pageview" content="$r('app.string.task_done')">
+          <if autoExpression="${taskInfo}.isDone">
+            <expression name="exp"/>
+          </if>
+          <textevent/>
+          <textstyle assign="HealthTextStyle"/>
+        </widget>
+        <widget xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.7/@pageview" space="20" alignItems="Center" justifyContent="Center">
+          <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.7/@pageview" content="${taskInfo}.finValue || `--`">
+            <textevent/>
+            <textstyle assign="HealthTextStyle" fontSize="$r('app.float.default_24')"/>
+          </widget>
+          <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.7/@pageview" content="'/' + ${taskInfo}.targetValue">
+            <textevent/>
+            <textstyle assign="labelTextStyle" fontWeight="${FONT_WEIGHT_400}"/>
+          </widget>
+          <if autoExpression="!${taskInfo}.isDone">
+            <expression name="exp"/>
+          </if>
+          <rowevent/>
+          <rowstyle/>
+        </widget>
+        <rowevent onClick="editTask"/>
+        <rowstyle width="${THOUSANDTH_1000}" height="${THOUSANDTH_1000}" paddingleft="${THOUSANDTH_50}" backgroundColor="$r('app.color.white')" paddingright="${THOUSANDTH_33}" borderRadius="$r('app.float.default_24')"/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="CustomDialogView">
+    <pageview title="CustomDialogView">
+      <widgets xsi:type="arkUIModel:CustomDialogContainer" id="taskDialog" widgetType="Container" root="//@uidesign.8/@pageview">
+        <pagerefrence name="CustomDialogExample">
+          <parameter name="taskInfo" value="${taskInfo}"/>
+          <pageevent/>
+        </pagerefrence>
+        <customdialogstyle/>
+        <customdialogevent/>
+      </widgets>
+      <pageevent aboutToAppear="showTaskDialog"/>
+    </pageview>
+  </uidesign>
+  <uidesign name="CustomDialogExample">
+    <pageview title="CustomDialogExample">
+      <widgets xsi:type="arkUIModel:RowContainer" id="行容器" widgetType="Container" root="//@uidesign.9/@pageview" space="20" alignItems="Center" justifyContent="Center">
+        <widget xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.9/@pageview" justifyContent="End" alignItems="Center" space="5">
+          <pagerefrence name="TaskBaseInfo">
+            <parameter name="taskName" value="${taskInfo}.taskID.toString()"/>
+            <parameter name="dialogImage" value="${taskInfo}.dialogImage"/>
+            <pageevent/>
+          </pagerefrence>
+          <pagerefrence name="TaskClock">
+            <parameter name="taskInfo" value="${taskInfo}"/>
+            <parameter name="selfController" value="${selfController}"/>
+            <pageevent/>
+          </pagerefrence>
+          <columnevent/>
+          <columnstyle width="$r('app.float.default_316')" height="$r('app.float.default_451')" paddingleft="$r('app.float.default_20')" backgroundImage="${taskInfo}.dialogImage, ImageRepeat.NoRepeat" paddingbottom="$r('app.float.default_12')" backgroundImageSize="{ width: '100%', height: '100%' }"/>
+        </widget>
+        <rowevent/>
+        <rowstyle/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="TaskBaseInfo">
+    <pageview title="TaskBaseInfo">
+      <widgets xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.10/@pageview" justifyContent="Center" alignItems="Center" space="${DEFAULT_8}">
+        <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.10/@pageview" content="${taskName}">
+          <textevent/>
+          <textstyle marginleft="$r('app.float.default_12')" assign="taskTextStyle" fontSize="$r('app.float.default_22')" fontWeight="Bold"/>
+        </widget>
+        <columnevent/>
+        <columnstyle position="{ y: $r('app.float.default_267') }"/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <uidesign name="TaskClock">
+    <pageview title="TaskClock">
+      <widgets xsi:type="arkUIModel:ColumnContainer" id="列容器" widgetType="Container" root="//@uidesign.11/@pageview" justifyContent="Center" alignItems="Center" space="${DEFAULT_12}">
+        <widget xsi:type="arkUIModel:ButtonWidget" id="按钮" widgetType="Widget" root="//@uidesign.11/@pageview" label="$r('app.string.clock_in')" stateEffect="false" type="Capsule">
+          <buttonevent onClick="clickButton"/>
+          <buttonstyle width="$r('app.float.default_220')" backgroundColor="'rgba(255,255,255,0.40)'" visibility="!${showButton} ? Visibility.None : Visibility.Visible" borderRadius="$r('app.float.default_24')"/>
+        </widget>
+        <widget xsi:type="arkUIModel:TextWidget" id="文本" widgetType="Widget" root="//@uidesign.11/@pageview" content="$r('app.string.got_it')">
+          <textevent onClick="clickText"/>
+          <textstyle assign="textStyle" fontSize="$r('app.float.default_14')" fontWeight="Regular"/>
+        </widget>
+        <columnevent/>
+        <columnstyle/>
+      </widgets>
+      <pageevent/>
+    </pageview>
+  </uidesign>
+  <operationlibray name="operationlibray">
+    <projectparameters name="FULL_PARENT" pType="string" value="'100%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="HOME_TITLE" pType="string" value="'首页'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="HOME_TAB_INDEX" pType="number" value="0">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="FONT_WEIGHT_500" pType="number" value="500">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_1000" pType="string" value="'100%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_500" pType="string" value="'50%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_900" pType="string" value="'90%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="FONT_WEIGHT_700" pType="number" value="700">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_420" pType="string" value="'42%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_33" pType="string" value="'3.3%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_50" pType="string" value="'5%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_120" pType="string" value="'12%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="DEFAULT_180" pType="number" value="180">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="WEEK_DAY_NUM" pType="number" value="7">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="DEFAULT_2" pType="number" value="2">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_80" pType="string" value="'8%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="DAY_TIME" pType="number" value="24 * 60 * 60 * 1000">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="DEFAULT_8" pType="number" value="8">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_15" pType="string" value="'1.5%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="DEFAULT_12" pType="number" value="12">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="DEFAULT_6" pType="number" value="6">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="FONT_WEIGHT_400" pType="number" value="400">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="HOME_BTN_Z" pType="number" value="2">
+      <type type="number"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_830" pType="string" value="'83%'">
+      <type type="string"/>
+    </projectparameters>
+    <projectparameters name="THOUSANDTH_880" pType="string" value="'88%'">
+      <type type="string"/>
+    </projectparameters>
+    <domainmodel>
+      <entity type="class" name="DayInfo">
+        <attributes name="date">
+          <type type="Date"/>
+        </attributes>
+        <attributes name="targetTaskNum">
+          <type type="number"/>
+        </attributes>
+        <attributes name="finTaskNum">
+          <type type="number"/>
+        </attributes>
+      </entity>
+      <entity type="class" name="TaskInfo">
+        <attributes name="id">
+          <type type="number"/>
+        </attributes>
+        <attributes name="date">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskID">
+          <type type="number"/>
+        </attributes>
+        <attributes name="taskName">
+          <type type="string"/>
+        </attributes>
+        <attributes name="targetValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isAlarm">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="startTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="endTime">
+          <type type="string"/>
+        </attributes>
+        <attributes name="frequency">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isDone">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="finValue">
+          <type type="string"/>
+        </attributes>
+        <attributes name="isOpen">
+          <type type="boolean"/>
+        </attributes>
+        <attributes name="unit">
+          <type type="string"/>
+        </attributes>
+        <attributes name="taskImage">
+          <type type="Resource"/>
+        </attributes>
+        <attributes name="taskText">
+          <type type="Resource"/>
+        </attributes>
+        <attributes name="dialogImage">
+          <type type="Resource"/>
+        </attributes>
+      </entity>
+    </domainmodel>
+  </operationlibray>
+</arkUIModel:GUIModel>
