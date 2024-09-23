@@ -7,19 +7,19 @@
 	<artifactId>com.rm2pt.generator.autoark.parent</artifactId>
 	<packaging>pom</packaging>
 	<properties>
-		<tycho-version>1.6.0</tycho-version>
+		<tycho-version>2.7.4</tycho-version>
 		<xtextVersion>2.21.0</xtextVersion>
 		<mwe2Version>2.11.2</mwe2Version>
 		<execMavenVersion>1.6.0</execMavenVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
-		<eclipse.repo.url>http://download.eclipse.org/releases/2020-09</eclipse.repo.url>
-		<rm2pt.repo.url>http://rm2pt.com/updatesite</rm2pt.repo.url>
+		<eclipse.repo.url>http://download.eclipse.org/releases/2021-09</eclipse.repo.url>
+		<rm2pt.repo.url>http://rm2pt.github.io/updatesite</rm2pt.repo.url>
 	</properties>
 	<repositories>
 		<repository>
-			<id>eclipse-202009</id>
+			<id>eclipse-release</id>
 			<url>${eclipse.repo.url}</url>
 			<layout>p2</layout>
 		</repository>
@@ -179,11 +179,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	<dependencies>
-		<dependency>
-			<groupId>ArkUIModel</groupId>
-			<artifactId>ArkUIModel.parent</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
 </project>
